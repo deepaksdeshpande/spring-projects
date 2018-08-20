@@ -1,0 +1,6 @@
+/database.properties
+/hibernate.cfg.xml
+/log4j.properties
+/messages_en_IN.properties
+/org
+/spring-hibernate-servlet.xml

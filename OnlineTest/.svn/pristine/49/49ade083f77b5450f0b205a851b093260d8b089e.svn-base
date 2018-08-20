@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<var name="examLogin" class="org.iitb.exam.model.ExamLogin"/>
+	
+	<view-state id="displayLoginView" view="/jsp/login/login.jsp" model="examLogin">
+    	<transition on="loginCredentialsEntered" to="performLoginAction"/>
+    </view-state>
+    
+    <action-state id="performLoginAction">
+    	<evaluate expression="loginService.performLogin(emailId)"></evaluate>
+    	<transition to="displayLoginSuccessView"/>
+    	<transition to="displayLoginErrorView"/>
+    </action-state>
+    
+    <view-state id="displayLoginSuccessView" view="/jsp/home/home.jsp"/>
+         
+    <view-state id="displayLoginErrorView" view="/jsp/login/loginerror.jsp"/>
+	
+</flow>

@@ -1,0 +1,11 @@
+Dear User,
+
+Your registration for the MHRD Recruitment is successful. Please follow the link below to activate your account
+and also to complete your profile.
+
+http://localhost:8080/OnlineTest/registrationactivation.htm?id=<email>
+
+Thanks
+MHRD Recruitment Team
+
+(This is a system Generated Mail and should not be replied to)

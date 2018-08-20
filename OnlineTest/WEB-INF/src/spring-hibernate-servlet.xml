@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!-- Properties file configuration -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:database.properties" />
+	</bean>
+	
+	<!-- Connection pooling configurations for Hibernate using c3p0 connection pooling library -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- Hibernate session factory configurations -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="org.iitb.exam.main.dto" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+		<property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- Hibernate c3p0 connection pooling configurations -->
+				<prop key="hibernate.connection.pool_size">5</prop>
+				<prop key="hibernate.c3p0.idle_test_period">300</prop>
+				<prop key="hibernate.c3p0.min_size">0</prop>
+				<prop key="hibernate.c3p0.max_size">300</prop>
+				<prop key="hibernate.c3p0.timeout">1800</prop>
+				<prop key="hibernate.c3p0.acquireRetryDelay">1000</prop>
+				<prop key="hibernate.c3p0.acquireRetryAttempts">60</prop>
+				<prop key="ibernate.c3p0.acquire_increment">3</prop>
+				<prop key="hibernate.c3p0.preferredTestQuery">SELECT 1;</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Hibernate transaction manager configuration -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- All Hibernate Service Implementer Configurations -->
+	
+	<!-- <bean id="userService" class="org.iitb.exam.main.daoimpl.UserServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean> -->
+	
+	<bean id="examLoginService" class="org.iitb.exam.main.daoimpl.ExamLoginServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchDesignation" class="org.iitb.exam.main.daoimpl.DesignationServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="createExam" class="org.iitb.exam.main.daoimpl.CreateExamServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchQuestion" class="org.iitb.exam.main.daoimpl.QuestionBankServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchAdvertisement" class="org.iitb.exam.main.daoimpl.AdvertisementServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+		
+	<bean id="fetchAdvt_Desg_Exam" class="org.iitb.exam.main.daoimpl.Desg_Exam_AdvtServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="advertisementService" class="org.iitb.exam.main.daoimpl.AdvertisementServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="questionService" class="org.iitb.exam.main.daoimpl.QuestionServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchAdvtDesgName" class="org.iitb.exam.main.daoimpl.GetAdvertistmentDesignationNameImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchQuestionByAdvtIdandDesgId" class="org.iitb.exam.main.daoimpl.GetQuestionsBasedOnAdvtandDesgImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchUserDetails" class="org.iitb.exam.main.daoimpl.UserDetailsServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="examService" class="org.iitb.exam.main.daoimpl.ExamServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="createUser" class="org.iitb.exam.main.daoimpl.UserRegistrationServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="qualificationService" class="org.iitb.exam.main.daoimpl.QualificationServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="experienceService" class="org.iitb.exam.main.daoimpl.ExperienceServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="fetchUserRole" class="org.iitb.exam.main.daoimpl.UserRoleServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="checkusername" class="org.iitb.exam.main.daoimpl.CheckUsernameServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    one of the properties available; the maximum file size in bytes
+    	<property name="maxUploadSize" value="1000000"/>
+	</bean> -->
+	
+	<bean id="createAdvt" class="org.iitb.exam.main.daoimpl.CreateAdvertisementServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+		
+	<bean id="createContactus" class="org.iitb.exam.main.daoimpl.CreateContactUsServiceImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <!-- one of the properties available; the maximum file size in bytes -->
+    	<property name="maxUploadSize" value="8192"/>
+	</bean>
+</beans>
