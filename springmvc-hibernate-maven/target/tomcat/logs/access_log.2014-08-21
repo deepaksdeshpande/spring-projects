@@ -1,0 +1,13 @@
+127.0.0.1 - - [21/Aug/2014:18:50:49 -0700] "GET /myapp HTTP/1.1" 302 - http-bio-8080-exec-1 0
+127.0.0.1 - - [21/Aug/2014:18:50:51 -0700] "GET /myapp/ HTTP/1.1" 200 164 http-bio-8080-exec-2 1450
+127.0.0.1 - - [21/Aug/2014:18:50:51 -0700] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+127.0.0.1 - - [21/Aug/2014:18:50:51 -0700] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+127.0.0.1 - - [21/Aug/2014:18:51:03 -0700] "GET / HTTP/1.1" 404 - http-bio-8080-exec-6 0
+127.0.0.1 - - [21/Aug/2014:19:07:54 -0700] "GET /myapp/ HTTP/1.1" 404 949 http-bio-8080-exec-1 49
+127.0.0.1 - - [21/Aug/2014:19:08:02 -0700] "GET /myapp/home.htm HTTP/1.1" 200 164 http-bio-8080-exec-2 84
+127.0.0.1 - - [21/Aug/2014:19:10:21 -0700] "GET /myapp/ HTTP/1.1" 302 - http-bio-8080-exec-1 1043
+127.0.0.1 - - [21/Aug/2014:19:10:21 -0700] "GET /myapp/home.htm;jsessionid=268266AE750D8F2D16017C7F74E967F5 HTTP/1.1" 200 164 http-bio-8080-exec-2 63
+127.0.0.1 - - [21/Aug/2014:19:14:00 -0700] "GET /myapp/home.htm;jsessionid=268266AE750D8F2D16017C7F74E967F5 HTTP/1.1" 200 164 http-bio-8080-exec-4 6
+127.0.0.1 - - [21/Aug/2014:19:44:15 -0700] "GET /myapp HTTP/1.1" 302 - http-bio-8080-exec-1 0
+127.0.0.1 - - [21/Aug/2014:19:44:15 -0700] "GET /myapp/ HTTP/1.1" 302 - http-bio-8080-exec-2 44
+127.0.0.1 - - [21/Aug/2014:19:44:15 -0700] "GET /myapp/home.htm HTTP/1.1" 200 164 http-bio-8080-exec-3 123
