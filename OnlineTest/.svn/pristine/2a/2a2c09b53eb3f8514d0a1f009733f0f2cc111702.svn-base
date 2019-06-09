@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+	<context:component-scan base-package="org.iitb.exam.main" />
+
+	<mvc:annotation-driven />
+
+	<!-- <import resource="captcha-servlet.xml" /> -->
+
+	<!-- Configuring spring web-flow -->
+
+
+	<!-- Configuring the spring controllers -->
+
+	<bean id="homeController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="examhome/examhome" />
+
+	<bean id="sessionExpiredController"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+		p:viewName="errorpage/sessionexpired"></bean>
+
+	<bean id="sessionValidityInterceptor" class="org.iitb.exam.main.utils.SessionValidityInterceptor"></bean>
+
+	<bean id="mappings"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="sessionValidityInterceptor" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Bean configuration for resolving the requested URI to a proper controller -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<!-- <prop key="/captcha.htm">captchaController</prop> -->
+
+				<prop key="/welcome.htm">homeController</prop>
+
+				<prop key="/sessionexpired.htm">sessionExpiredController</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- Bean configuration for the presentation layer -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:viewClass="org.springframework.web.servlet.view.JstlView" p:prefix="/jsp/"
+		p:suffix=".jsp" />
+
+	<!-- Message Resource Bean configurations -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basename="classpath:messages" p:defaultEncoding="UTF-8" />
+		
+	 <bean id="multipartResolver"
+  		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  			<property name="maxUploadSize" value="1000000"/>
+  		</bean>
+</beans>

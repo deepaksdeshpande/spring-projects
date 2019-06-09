@@ -1,0 +1,38 @@
+/* =======================================
+
+		Main Stylesheet
+		
+		Building on Twitter Bootstrap
+		http://twitter.github.com/bootstrap/
+		
+========================================== */
+
+/*@import url('css/bootstrap.min.css');
+@import url('css/css/bootstrap-responsive.min.css');*/
+@import url('./jsp/css/bootstrap.css');
+
+
+/* New styles below */
+
+		label.valid {
+		  background: url(../images/valid.png) center center no-repeat;
+		  display: inline-block;
+		  text-indent: -9999px;
+		}
+		label.error {
+			font-weight: bold;
+			color: red;
+			padding: 2px 8px;
+			margin-top: 2px;
+		}
+
+		.error{
+		    color: #ffffff;
+    		background-color: rgba(236, 94, 90,0.6);
+    		border-color: rgba(238, 77, 99,1);
+    		padding: 4px;
+    		width: 100%;
+    		margin-bottom: 20px;
+    		border: 1px solid transparent;
+    		border-radius: 2px;
+		}

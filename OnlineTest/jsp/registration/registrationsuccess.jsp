@@ -1,0 +1,1 @@
+Your registration has been completed please login with your username and password.
